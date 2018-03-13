@@ -1,0 +1,24 @@
+<label class="Font18px" for="chooseNodeEnc">
+	دانشنامه
+</label>
+<select id="chooseNodeEnc" name="chooseNodeEnc" class="custom-select FontYekan mr-2" onchange="chooseNodeEncChenged();">
+	<option value="<%=consV.database.enc.medicine.CollName%>" selected>طب سنتی</option>
+	<option value="<%=consV.database.enc.fruits.CollName%>">میوه ها</option>
+	<option value="<%=consV.database.enc.plants.CollName%>">گیاهان</option>
+	<option value="<%=consV.database.enc.edible.CollName%>">خوراکی ها</option>
+	<option value="<%=consV.database.enc.sickness.CollName%>">بیماری ها</option>
+	<option value="<%=consV.database.enc.lifestyle.CollName%>">سبگ زندگی</option>
+	<option value="<%=consV.database.enc.genetic.CollName%>">ژنتیک</option>
+	<option value="<%=consV.database.enc.other.CollName%>">متفرقه</option>
+</select>
+<label class="Font18px mr-2" for="chooseNodeLang">
+	زبان مقاله
+</label>
+<select id="chooseNodeLang" name="chooseNodeLang" class="custom-select FontYekan mr-2" onchange="chooseNodeLangChenged();">
+	<option value="fa" selected>فارسی</option>
+	<option value="en">انگلیسی</option>
+</select>
+<input id="selectedNodeInput" name="selectedNodeInput" value="" style="display: none" type="text">
+<div id="nodeTree" class="container col-md-12 mt-4 EncTree">
+	
+</div>

@@ -1,0 +1,25 @@
+<!-- slideshow -->
+<div id="slideshow" class="slideshow text_good_black">
+    <% slideshows.forEach(
+    function(el , i)
+    {%>
+        <a href="<%=el.url%>">
+            <img id="slide_show_image_<%=i%>" class="img-fluid m-auto" src="/<%=el.image_add%>" alt="<%=el.image_alt%>"
+                <%if (i != Object.keys(slideshows).length-1){%>
+                style="display:none"
+                <%}%>
+            >
+        </a>
+    <% });%>
+    <div id="bottom_slideshow_part" class="slideshow_B">
+        <ul class="FlexCen">
+            <% for(var i = 0 ; i < Object.keys(slideshows).length-1 ; i++)
+            {
+                %><div class="text-center"><%= slideshows[i].title %></div><%
+            }
+            %>
+            <div href="<%=slideshows[Object.keys(slideshows).length-1].url%>" class="slideshow_AS text-center"><%= slideshows[Object.keys(slideshows).length-1].title %></div>
+        </ul>
+    </div>
+</div>
+<!-- slideshow end -->

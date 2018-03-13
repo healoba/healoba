@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="<%=lang%>">
+<head>
+	<!-- Google stuff -->
+	<meta name="google-site-verification" content="PAteeo9xq1Bl6E6S_tUT1-AfGCizExo0yOOFjRCynh4" />
+	<!-- Google stuff End -->
+	<meta charset="utf-8" />
+	<title> <%= i18n.__(title) %> </title>
+	<meta property="og:title" content="<%= i18n.__(title) %>"/>
+	<meta name="author" content="mlibre" />
+	<meta name="email" content="m.gh@linuxmail.org" />
+	<meta name="viewport" content="width=device-width, initial-scale=1 shrink-to-fit=no" />
+	<% if(typeof pageDes != 'undefined')
+	{%>
+	<meta name="description" content="<%= i18n.__(pageDes) %>" />
+	<meta property="og:description" content="<%= i18n.__(pageDes) %>"/>
+	<%}%>
+	<link rel="icon" type="image/png" href="<%=consV.site.favicon%>">
+	<link rel="alternate" hreflang="<%if(lang == 'fa'){%>en<%}else{%>fa<%}%>" href="<%='https://' + consV.host.domain%><%if(lang == 'fa'){%><%=EnLaUrl%><%}else{%><%=FaLaUrl%><%}%>" />
+	<link rel="stylesheet" href="<%=consV.css.bootstrap%>">
+	<link rel="stylesheet" href="<%=consV.css.animate%>">
+	<link rel="stylesheet" href="<%=consV.css.fontAwesome%>">
+	<link rel="stylesheet" href="<%=consV.css.main%>">
+	<link rel="stylesheet" href="<%=consV.css.things%>">
+	<link rel="stylesheet" href="<%=consV.css.beautifier%>">
+	<link rel="stylesheet" href="<%=consV.css.font%>">
+	<% if(lang == "fa")
+	{%>
+		<link rel="stylesheet" href="<%=consV.css.fa%>">
+	<%}
+	else
+	{%>
+		<link rel="stylesheet" href="<%=consV.css.en%>">
+	<%}%>
+	<% if(typeof also_add != 'undefined') { also_add.forEach(function(css){ %>
+	<link rel="stylesheet" href="<%= css %>">
+	<% });} %>
+</head>

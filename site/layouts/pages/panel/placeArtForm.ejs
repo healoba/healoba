@@ -1,0 +1,59 @@
+<form id="placeArtForm" method="post" action="<%=formActionUrl%>"
+encType="multipart/form-data" onsubmit="<%=formOnSubmit%>">
+
+	<div class="form-group">
+		<label class="Font18px" for="placeArtEnc">
+			دانشنامه
+		</label>
+		<select id="placeArtEnc" name="placeArtEnc" class="custom-select FontYekan mr-2" onchange=<%=EncOnchange%>>
+			<option value="<%=consV.database.enc.medicine.CollName%>" selected>طب سنتی</option>
+			<option value="<%=consV.database.enc.fruits.CollName%>">میوه ها</option>
+			<option value="<%=consV.database.enc.plants.CollName%>">گیاهان</option>
+			<option value="<%=consV.database.enc.edible.CollName%>">خوراکی ها</option>
+			<option value="<%=consV.database.enc.sickness.CollName%>">بیماری ها</option>
+			<option value="<%=consV.database.enc.lifestyle.CollName%>">سبگ زندگی</option>
+			<option value="<%=consV.database.enc.genetic.CollName%>">ژنتیک</option>
+			<option value="<%=consV.database.enc.other.CollName%>">متفرقه</option>
+		</select>
+		<input id="placeArtnodeId" name="placeArtnodeId" class="sr-only" type="text" value="">
+
+		<label class="Font18px" for="placeFormlang">
+			زبان مقاله
+		</label>
+		<select id="placeFormlang" name="placeFormlang" class="custom-select FontYekan mr-2" onchange=<%=langOnchange%>>
+			<option value="fa" selected>فارسی</option>
+			<option value="en">انگلیسی</option>
+		</select>
+	</div>
+
+	<div class="form-group">
+		<label class="Font18px" for="tags">
+			محل مطلب
+		</label>
+		<input id="nodePlaceInput" name="nodePlaceInput" value="" style="display: none" type="text">
+		<div id="EncTree" class="containter col-md-12 EncTree">
+				
+		</div>
+	</div>
+
+	<div class="form-group has-warning">
+		<label class="Font18px" for="URLName">
+			متن آدرس بار مقاله&nbsp
+			<%- include( consV.layouts.questionMark , {QMTitlle: "متن آدرس بار مقاله" , QMContent: "متنی که در آدرس بار می آید"} ) %> 
+		</label>
+		<div class="row">
+			<div class="col-md-7">
+				<input id="URLName" name="URLName" class="form-control form-control-warning" value="" type="text"
+				pattern="^[A-Za-z0-9_]+$" onchange="URLNameWarning()">
+			</div>
+			<div class="col">
+				<button id="URLNameCheck" type="button" class="btn btn-primary"
+				onclick="<%=CheckURLNameOnClick%>">
+					بررسی فراهم بودن نام
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<button type="submit" class="btn btn-primary">قرار دادن</button>
+</form>

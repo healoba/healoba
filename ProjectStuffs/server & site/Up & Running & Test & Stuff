@@ -1,0 +1,188 @@
+=========================
+Create DataBase
+=========================
+mkdir database
+cd database
+mongod --dbpath . &> /dev/null &
+mongo
+
+use admin
+db.createUser(
+{
+	user: 'admin',
+	pwd: 'M17511752gh@M17511752gh',
+	roles: [ {role: 'root' , db:'admin'},
+			 {role: 'userAdminAnyDatabase' , db:'admin'} ]
+});
+
+Ctrl + D;
+fg; Ctrl + C;
+
+mongod --auth --port 27017 --dbpath=. &> /dev/null &
+mongo --port 27017 -u "admin" -p "M17511752gh@M17511752gh" --authenticationDatabase "admin"
+
+use health
+db.createUser(
+{
+	user: 'mlibre',
+	pwd: 'M17511752gh@M17511752gh',
+	roles: [ {role: 'readWrite' , db:'health'} ]
+});
+
+Ctrl + D;
+fg; Ctrl + C;
+
+==========================
+Create Basics DataBase Schema
+==========================
+use health
+db.createCollection('draft');
+db.createCollection('encyclopedia_medicine');
+db.createCollection('encyclopedia_fruits');
+db.createCollection('encyclopedia_plants');
+db.createCollection('encyclopedia_edible');
+db.createCollection('encyclopedia_sickness');
+db.createCollection('encyclopedia_lifestyle');
+db.createCollection('encyclopedia_genetic');
+db.createCollection('encyclopedia_other');
+db.createCollection('site');
+db.createCollection('users');
+db.createCollection('telegram');
+-------------------------
+medicine collection:
+db.encyclopedia_medicine.insert
+({
+	root medicine document. null parent
+})
+-------------------------
+site collection:
+db.site.insert
+({
+	slideshows.
+})
+db.site.insert
+({
+	today_article.
+})
+db.site.insert
+({
+	resources.
+})
+-------------------------
+users collection:
+db.users.insert
+({
+	insert a sample user(admin).
+})
+-------------------------
+indexing:
+db.encyclopedia_medicine.createIndex( {parent: 1} )
+db.users.createIndex( {username: 1} )
+db.users.createIndex( {email: 1} )
+
+=========================
+Running DataBase
+=========================
+mongod --auth --port 27017 --dbpath=. &> /dev/null &
+mongo --port 27017 -u "mlibre" -p "M17511752gh@M17511752gh" --authenticationDatabase "health"
+
+==========================
+Backup & Restore
+==========================
+mongodump --host localhost:27017 -d health -u mlibre -o ProjectStuffs/db_dump/
+mongodump --host localhost:27017 -d health -u mlibre -p password -o ProjectStuffs/db_dump/
+-------------------------
+mongo --port 27017 -u "mlibre" -p "M17511752gh@M17511752gh" --authenticationDatabase "health"
+Delete collections
+mongorestore -v -h localhost:27017 -d health -u mlibre -p "M17511752gh@M17511752gh" ProjectStuffs/db_backups/DBbak-2017-11-29-18\:06\:54/health/
+
+==========================
+Delete collections
+==========================
+use health
+show collections
+db.encyclopedia_medicine.drop()
+db.encyclopedia_fruits.drop()
+db.encyclopedia_plants.drop()
+db.encyclopedia_edible.drop()
+db.encyclopedia_sickness.drop()
+db.encyclopedia_lifestyle.drop()
+db.encyclopedia_genetic.drop()
+db.encyclopedia_other.drop()
+db.users.drop()
+db.site.drop()
+db.draft.drop()
+db.telegram.drop()
+
+==========================
+Restore, Upload To Mlab
+==========================
+mongorestore -v -h localhost:27017 -d health -u mlibre -p "M17511752gh@M17511752gh" health/ProjectStuffs/db_backups/DBbak-17-08-25-06\:23\:54/health/
+mongorestore -v -h ds157298.mlab.com:57298 -d health -u mlibre -p password ProjectStuffs/db_dump/health/
+
+=========================
+###Manual run healoba####
+=========================
+./ProjectStuffs/scripts/start-mongodb-servcie.sh
+pm2 start health.js
+pm2 restart 0
+
+==========================
+test
+==========================
+mocha test/
+
+==========================
+Google
+==========================
+Verification
+-------------------------
+الان با متا تگی که تو هد اضافه کردم. وریفای شدم.
+که گفته با این روش، این متا تگ همین جور باید بمونه.
+webmaster
+-------------------------
+https://www.google.com/webmasters/tools/home?hl=en&authuser=0
+
+==========================
+git
+==========================
+git config --global core.editor nano
+-------------------------
+hard update:
+git fetch --all
+git reset --hard origin/master
+git pull origin master
+-------------------------
+touch .gitmessage.txt
+echo "something" > .gitmessage.txt
+git config --local commit.template .gitmessage.txt
+-------------------------
+touch .git/hooks/prepare-commit-msg
+chmod +x .git/hooks/prepare-commit-msg
+nano .git/hooks/prepare-commit-msg
+
+#!/bin/bash
+
+DATE=$(date)
+echo "date is: $DATE" >> "$1"
+
+==========================
+Telegram
+==========================
+http://t.me/healobaBot
+
+==========================
+medium
+==========================
+https://medium.com/@healoba
+
+==========================
+vscode setting
+==========================
+ext install syncing
+ctrl + shift + p. syncing: download settings.
+
+==========================
+sync space folder. home with remote.
+==========================
+rsync -av --ignore-existing mlibre@78.47.152.253:/home/mlibre/healoba/space/* healoba/space/

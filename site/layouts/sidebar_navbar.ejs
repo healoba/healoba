@@ -1,0 +1,174 @@
+<div id="sidebar_navbar" style="display: none" class="sidebar_navbar animated h-100 FontYekan bg-dark d-md-none">
+	<span class="fa fa-times pr-3 pt-3 cursorPointer" onclick="closeSN()"></span>
+	<ul class="nav nav-pills flex-column">
+		
+		<% if( sess.logged == null ){ %>
+		<li class="nav-item px-0 pt-3 pb-1 mt-5 <%if(active[0]=='signInUp'){%>customBG<%}%>">
+			<a class="nav-link pr-4 <%if(active[0]=='signInUp'){%>active<%}%>" href="#%>"
+			data-toggle="collapse" aria-expanded="<%if(active[0]=='signInUp'){%>true<%}else{%>false<%}%>"
+			data-target="#signInUpNav" aria-controls="signInUpNav">
+				<i class="fa fa-user"></i>
+				<span class="pr-1 mr-1">
+					ورود/ثبت نام
+				</span>
+				<span id="chevron_sidebar" style="font-size:10px;margin-bottom: 1px;" class="fa fa-chevron-<%if(active[0]=='signInUp'){%>down<%}else{%>left<%}%>"></span>
+			</a>
+			<ul id="signInUpNav" class="collapse list-unstyled sidebar_navbarMenu <%if(active[0]=='signInUp'){%>show<%}%>" aria-expanded="<%if(active[0]=='signInUp'){%>true<%}else{%>false<%}%>">
+				<li class="<%if(active[1]=='login'){%>active<%}%>">
+					<i class="fa fa-circle text-white"></i>
+					<a class="mr-2" href="<%='/' + lang + consV.pages.signIn%>">
+						<%=i18n.__("ورود")%>
+					</a>
+				</li>
+				<li class="<%if(active[1]=='signup'){%>active<%}%>">
+					<i class="fa fa-circle text-white"></i>
+					<a class="mr-2" href="<%='/' + lang + consV.pages.signUp%>">
+						<%=i18n.__("ثبت نام")%>
+					</a>
+				</li>
+			</ul>
+		</li>
+		<% }else{ %>
+		<li class="nav-item px-0 pt-3 pb-1 mt-5 <%if(active[0]=='user'){%>customBG<%}%>">
+			<a class="nav-link pr-4 <%if(active[0]=='user'){%>active<%}%>" href="#%>"
+			data-toggle="collapse" aria-expanded="<%if(active[0]=='user'){%>true<%}else{%>false<%}%>"
+			data-target="#userNav" aria-controls="userNav">
+				<i class="fa fa-user"></i>
+				<span class="pr-1 mr-1">
+					<% if ( sess.user.name == null || sess.user.family == null ){ %>
+						<%=sess.user.email%>
+					<%}else{%>
+						<%=sess.user.name + ' ' + sess.user.family%>
+					<%}%>	
+				</span>
+				<span id="chevron_sidebar" style="font-size:10px;margin-bottom: 1px;" class="fa fa-chevron-<%if(active[0]=='user'){%>down<%}else{%>left<%}%>"></span>
+			</a>
+			<ul id="userNav" class="collapse list-unstyled sidebar_navbarMenu <%if(active[0]=='user'){%>show<%}%>" aria-expanded="<%if(active[0]=='user'){%>true<%}else{%>false<%}%>">
+				<li class="<%if(active[1]=='myProfile'){%>active<%}%>">
+					<i class="fa fa-circle text-white"></i>
+					<a class="mr-2" href="#">
+						<%=i18n.__("پروفایل من")%>
+					</a>
+				</li>
+				<li class="<%if(active[1]=='panel'){%>active<%}%>">
+					<i class="fa fa-circle text-white"></i>
+					<a class="mr-2" href="<%='/' + lang + consV.pages.panel.home%>">
+						<%=i18n.__("پنل")%>
+					</a>
+				</li>
+				<li>
+					<i class="fa fa-circle text-white"></i>
+					<a class="mr-2" href="#" onclick="sign_out()">
+						<%=i18n.__("خروج")%>
+					</a>
+				</li>
+			</ul>
+		</li>
+		<% } %>
+
+		<li class="nav-item px-0 py-1">
+			<a class="nav-link pr-5 <%if(active=="home"){ %>active<%}%>" href="<%='/' + lang%>">
+				<%=i18n.__("خانه")%>
+				<i class="fa fa-home"></i>
+			</a>
+		</li>
+
+		<li class="nav-item px-0 py-1 <%if(active[0]=='enc'){%>customBG<%}%>">
+			<a class="nav-link pr-4 <%if(active[0]=='enc'){%>active<%}%>" href="<%='/' + lang + consV.pages.encyclopedia.home%>"
+			data-toggle="collapse" aria-expanded="<%if(active[0]=='enc'){%>true<%}else{%>false<%}%>"
+			data-target="#medicineEnc" aria-controls="medicineEnc">
+				<i class="fa fa-mortar-board"></i>
+				<span class="pr-1 mr-1">
+					دانشنامه ها
+				</span>
+				<span id="chevron_sidebar" style="font-size:10px;margin-bottom: 1px;" class="fa fa-chevron-<%if(active[0]=='enc'){%>down<%}else{%>left<%}%>"></span>
+			</a>
+			<ul id="medicineEnc" class="collapse list-unstyled sidebar_navbarMenu <%if(active[0]=='enc'){%>show<%}%>" aria-expanded="<%if(active[0]=='enc'){%>true<%}else{%>false<%}%>">
+				<li class="<%if(active[1]=='medicine'){%>active<%}%>">
+					<i class="fa fa-circle text-white"></i>
+					<a class="mr-2" href="<%='/' + lang + consV.pages.medicine%>">
+						<%=i18n.__("طب سنتی")%>
+					</a>
+				</li>
+				<li class="<%if(active[1]=='fruits'){%>active<%}%>">
+					<i class="fa fa-circle text-white"></i>
+					<a class="mr-2" href="<%='/' + lang + consV.pages.fruits%>">
+						<%=i18n.__("میوه ها")%>
+					</a>
+				</li>
+				<li class="<%if(active[1]=='plants'){%>active<%}%>">
+					<i class="fa fa-circle text-white"></i>
+					<a class="mr-2" href="<%='/' + lang + consV.pages.plants%>">
+						<%=i18n.__("گیاهان")%>
+					</a>
+				</li>
+				<li class="<%if(active[1]=='edible'){%>active<%}%>">
+					<i class="fa fa-circle text-white"></i>
+					<a class="mr-2" href="<%='/' + lang + consV.pages.edible%>">
+						<%=i18n.__("خوراکی ها")%>
+					</a>
+				</li>
+				<li class="<%if(active[1]=='sickness'){%>active<%}%>">
+					<i class="fa fa-circle text-white"></i>
+					<a class="mr-2" href="<%='/' + lang + consV.pages.sickness%>">
+						<%=i18n.__("بیماری ها")%>
+					</a>
+				</li>
+				<li class="<%if(active[1]=='lifestyle'){%>active<%}%>">
+					<i class="fa fa-circle text-white"></i>
+					<a class="mr-2" href="<%='/' + lang + consV.pages.lifestyle%>">
+						<%=i18n.__("سبک زندگی")%>
+					</a>
+				</li>
+				<li class="<%if(active[1]=='genetic'){%>active<%}%>">
+					<i class="fa fa-circle text-white"></i>
+					<a class="mr-2" href="<%='/' + lang + consV.pages.genetic%>">
+						<%=i18n.__("ژنتیک")%>
+					</a>
+				</li>
+				<li class="<%if(active[1]=='other'){%>active<%}%>">
+					<i class="fa fa-circle text-white"></i>
+					<a class="mr-2" href="<%='/' + lang + consV.pages.other%>">
+						<%=i18n.__("متفرقه")%>
+					</a>
+				</li>
+				<li class="<%if(active[1]=='encyclopedias'){%>active<%}%>">
+					<i class="fa fa-circle text-white"></i>
+					<a class="mr-2" href="<%='/' + lang + consV.pages.encyclopedia.home%>">
+						<%=i18n.__("تمام دانشنامه ها")%>
+					</a>
+				</li>
+			</ul>
+		</li>
+
+		<li class="nav-item px-0 py-1">
+			<a class="nav-link pr-5 <%if(active=="education"){ %>active<%}%>" href="#">
+				<%=i18n.__("آموزش")%>
+				<i class="fa fa-download"></i>
+			</a>
+		</li>
+
+		<li class="nav-item px-0 py-1">
+			<a class="nav-link pr-5 <%if(active=="download"){ %>active<%}%>" href="#">
+				<%=i18n.__("دانلود")%>
+				<i class="fa fa-download"></i>
+			</a>
+		</li>
+
+		<!--
+		<li class="nav-item px-0 py-1">
+			<a href="<%=consV.host.shop%>" class="nav-link pr-5 <%if(active=="store"){ %>active<%}%>">
+				<%=i18n.__("فروشگاه")%>
+				<i class="fa fa-shopping-cart"></i>
+			</a>
+		</li>
+		-->
+	</ul>
+</div>
+
+<span id="SNOpenB" class="cursorPointer d-md-none" onclick="openSN()">
+	<span class="fa-stack">
+		<span class="fa fa-circle fa-stack-2x"></span>
+		<span class="fa fa-bars fa-stack-1x"></span>
+	</span>
+</span>

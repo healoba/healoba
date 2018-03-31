@@ -7,12 +7,6 @@ let mongo_password = 'M17511752gh%40M17511752gh';
 let mlab_username = 'mlibre';
 let mlab_password = 'masoudsam';
 
-let greenmail = 'plus@greenmail.net';
-let greenmailPass = 'M17511752gh!';
-
-let healoba = 'healoba@mail.com';
-let healobaPass = 'healobahealoba';
-
 let healobaTwitter = '@healoba';
 let healobaTwitterPass = 'healobahealoba';
 
